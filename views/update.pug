@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method='POST', action='/recipes/update/'+recipe._id)
+        #form-group
+            label Name:
+            input.form-control(name='name', type='text', value=recipe.name)
+        #form-group
+            label Chef:
+            input.form-control(name='chef', type='text', value=recipe.chef)
+        #form-group
+            label Ingredients:
+            textarea.form-control(name='ingredients')= recipe.ingredients
+        br
+        input.btn.btn-primary(type='submit', value='Submit')

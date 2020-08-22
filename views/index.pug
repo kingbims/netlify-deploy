@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    h1 #{title}
+    ul.list-group
+        each recipe, i in recipes
+            li.list-group-item
+                a(href="/recipe/"+recipe._id)= recipe.name

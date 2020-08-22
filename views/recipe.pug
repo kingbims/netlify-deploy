@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1= recipe.name
+    h5 Created by #{recipe.chef}
+    p= recipe.ingredients
+    hr
+    a.btn.btn.default(href='/recipe/update/'+recipe._id) Update
+    a.btn.btn-danger.delete-recipe(href='#', data-id=recipe._id) Delete
