@@ -6,7 +6,7 @@ const dotenv = require('dotenv').config();
 //mongoose.connect('mongodb://localhost:27017/nodeproject', {useNewUrlParser: true, useUnifiedTopology: true});
 let db = mongoose.connection;
 
-mongoose.connection(process.env.MONGODB_URI || process.env.DB_DATA);
+mongoose.connect(process.env.MONGODB_URI || process.env.DB_DATA, {useNewUrlParser: true, useUnifiedTopology: true});
 
 //Check connection
 db.once('open', () => {
