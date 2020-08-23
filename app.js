@@ -3,10 +3,17 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
+const DB_DATA = require('./.env')
 //mongoose.connect('mongodb://localhost:27017/nodeproject', {useNewUrlParser: true, useUnifiedTopology: true});
 let db = mongoose.connection;
 
-mongoose.connect(process.env.MONGODB_URI || process.env.DB_DATA, {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect(process.env.MONGODB_URI || process.env.DB_DATA, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(DB_DATA, {useNewUrlParser: true});
+    mongoose.connection.once('open', function(){
+      console.log('Conection has been made!');
+    }).on('error', function(error){
+        console.log('Error is: ', error);
+    });
 
 //Check connection
 db.once('open', () => {
