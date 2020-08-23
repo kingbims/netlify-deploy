@@ -2,9 +2,11 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
-mongoose.connect('mongodb://localhost:27017/nodeproject', {useNewUrlParser: true, useUnifiedTopology: true});
+const dotenv = require('dotenv').config();
+//mongoose.connect('mongodb://localhost:27017/nodeproject', {useNewUrlParser: true, useUnifiedTopology: true});
 let db = mongoose.connection;
+
+mongoose.connection(process.env.MONGODB_URI || process.env.DB_DATA);
 
 //Check connection
 db.once('open', () => {
@@ -124,6 +126,7 @@ app.delete('/recipe/:id', (req, res) => {
 });
 
 //Start server
-app.listen(3000, () => {
-    console.log('Server running on port 3000...');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}...`);
 });
